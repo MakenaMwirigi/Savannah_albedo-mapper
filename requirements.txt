@@ -1,0 +1,8 @@
+numpy
+matplotlib
+rioxarray
+xarray
+rasterio
+pystac-client
+planetary-computer
+jupyter
