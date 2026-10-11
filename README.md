@@ -43,3 +43,25 @@ You must **not use AI coding assistants**. The objective is to verify your abili
 2. A two-panel figure:
    - **Left:** Spatial map of $\alpha$ across the bounding box.
    - **Right:** Scatter plot of $NDVI$ (x-axis) vs $\alpha$ (y-axis), one point per valid pixel, showing the relationship between vegetation density and canopy reflectance.
+
+
+   ## Results
+
+- **Selected scene**: S2B_MSIL2A_20231029T095029_R079_T31PHL_20231029T142618  
+- **Date**: 29 October 2023  
+- **AOI cloud cover**: 32.4% (global scene: 45.3%)  
+- **Processing baseline**: 5.09 (offset correction applied)  
+- **Mean Albedo (α)**: 0.2166 ± 0.0371  
+- **Mean NDVI**: 0.5748 ± 0.1688  
+- **NDVI–Albedo correlation**: r = −0.21  
+
+The spatial albedo map shows a homogeneous low-reflectance surface.
+The NDVI vs albedo scatter shows a moderate negative relationship, confirming that denser vegetation is associated with slightly lower broadband albedo.
+
+## Notes on the brief
+
+|     Item     |  What the brief said   |   What was done and why    |
+
+| Cloud filter | `eo:cloud_cover < 20%` | No scene met this threshold over the AOI. Switched to pixel-level SCL scoring within the bbox and selected the least cloudy scene (32.4% AOI cloud cover). |
+| Reflectance conversion | `DN / 10000` | Applied `(DN + 1000) / 10000` for processing baseline ≥ 4.0, as required for scenes since January 2022. |
+| Resampling | Not specified | Used `Resampling.average` instead of nearest-neighbour when downsampling B02 and B04 from 10m to 20m. |
